@@ -1,0 +1,6 @@
+{
+  "name": "TAAJ commercial",
+  "description": "Vibrant and mobile-responsive e-commerce platform for premium tricycles (Kekes) and bicycles by TAAJ commercial, featuring smart hire-purchase configurations, a dynamic shopping cart, and order booking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
