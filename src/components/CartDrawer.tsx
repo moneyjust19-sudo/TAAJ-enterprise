@@ -91,10 +91,10 @@ export default function CartDrawer({
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 220 }}
-              className="w-screen max-w-md bg-white shadow-2xl flex flex-col"
+              className="w-screen max-w-md bg-white dark:bg-stone-900 shadow-2xl flex flex-col"
             >
               {/* Header */}
-              <div className="px-6 py-5 border-b border-stone-100 flex justify-between items-center bg-brand-black text-white">
+              <div className="px-6 py-5 border-b border-stone-100 dark:border-stone-850 flex justify-between items-center bg-brand-black text-white">
                 <div className="flex items-center space-x-2">
                   <ShoppingBag className="h-5 w-5 text-brand-yellow" />
                   <span className="font-sans font-black text-lg tracking-tight">MY SHOPPING CART</span>
@@ -114,11 +114,11 @@ export default function CartDrawer({
               <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
                 {cartItems.length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center text-center py-20 space-y-4">
-                    <div className="bg-stone-50 p-6 rounded-full border border-stone-100">
+                    <div className="bg-stone-50 dark:bg-stone-950 p-6 rounded-full border border-stone-100 dark:border-stone-850">
                       <ShoppingBag className="h-12 w-12 text-stone-300" />
                     </div>
-                    <h3 className="font-sans font-black text-lg text-stone-800">Your Cart is Empty</h3>
-                    <p className="font-sans text-sm text-stone-500 max-w-xs font-medium">
+                    <h3 className="font-sans font-black text-lg text-stone-800 dark:text-white">Your Cart is Empty</h3>
+                    <p className="font-sans text-sm text-stone-500 dark:text-stone-400 max-w-xs font-medium">
                       Explore our high-performance passenger Kekes, cargo Kekes, and heavy-duty bikes to fill up your cart.
                     </p>
                     <button
@@ -132,13 +132,13 @@ export default function CartDrawer({
                   cartItems.map((item) => (
                     <div
                       key={item.id}
-                      className="flex items-stretch space-x-4 bg-stone-50 border border-stone-200/50 p-4 rounded-2xl relative"
+                      className="flex items-stretch space-x-4 bg-stone-50 dark:bg-stone-950/45 border border-stone-200/50 dark:border-stone-800 p-4 rounded-2xl relative"
                     >
                       {/* Product Image */}
                       <img
                         src={item.product.image}
                         alt={item.product.name}
-                        className="w-20 h-20 rounded-xl object-cover border border-stone-200 flex-shrink-0"
+                        className="w-20 h-20 rounded-xl object-cover border border-stone-200 dark:border-stone-800 flex-shrink-0"
                         referrerPolicy="no-referrer"
                       />
 
@@ -146,12 +146,12 @@ export default function CartDrawer({
                       <div className="flex-grow flex flex-col justify-between">
                         <div>
                           <div className="flex justify-between items-start">
-                            <h4 className="font-sans font-black text-sm text-brand-black leading-tight pr-5">
+                            <h4 className="font-sans font-black text-sm text-brand-black dark:text-white leading-tight pr-5">
                               {item.product.name}
                             </h4>
                             <button
                               onClick={() => onRemoveItem(item.id)}
-                              className="text-stone-400 hover:text-brand-red absolute top-4 right-4 p-1 rounded hover:bg-stone-100 transition-colors cursor-pointer"
+                              className="text-stone-400 hover:text-brand-red absolute top-4 right-4 p-1 rounded hover:bg-stone-100 dark:hover:bg-stone-800 transition-colors cursor-pointer"
                               title="Delete Item"
                             >
                               <Trash2 className="h-4 w-4" />
@@ -161,11 +161,11 @@ export default function CartDrawer({
                           {/* Plan Badge */}
                           <div className="mt-1 flex flex-wrap gap-1">
                             {item.paymentOption === 'outright' ? (
-                              <span className="bg-emerald-100 text-emerald-800 text-[9px] font-sans font-black px-2 py-0.5 rounded uppercase tracking-wider">
+                              <span className="bg-emerald-100/20 text-emerald-600 text-[9px] font-sans font-black px-2 py-0.5 rounded uppercase tracking-wider">
                                 Outright Purchase
                               </span>
                             ) : (
-                              <span className="bg-brand-yellow/25 text-brand-black text-[9px] font-sans font-black px-2 py-0.5 rounded uppercase tracking-wider border border-brand-yellow/30">
+                              <span className="bg-brand-yellow/10 text-brand-yellow text-[9px] font-sans font-black px-2 py-0.5 rounded uppercase tracking-wider border border-brand-yellow/30">
                                 {item.paymentOption === '6month' ? '6-Month Plan' : '12-Month Plan'} ({item.depositPercent}% Deposit)
                               </span>
                             )}
@@ -177,12 +177,12 @@ export default function CartDrawer({
                           {/* Price Display */}
                           <div>
                             {item.paymentOption === 'outright' ? (
-                              <div className="font-sans font-black text-sm text-brand-black">
+                              <div className="font-sans font-black text-sm text-brand-black dark:text-white">
                                 {formatNaira(item.pricePerItem)}
                               </div>
                             ) : (
                               <div>
-                                <span className="block text-[10px] font-mono text-stone-400 font-bold uppercase leading-none">
+                                <span className="block text-[10px] font-mono text-stone-400 dark:text-stone-500 font-bold uppercase leading-none">
                                   Deposit: {formatNaira(item.depositAmount)}
                                 </span>
                                 <span className="block text-xs font-sans font-black text-brand-red mt-1">
@@ -193,20 +193,20 @@ export default function CartDrawer({
                           </div>
 
                           {/* Quantity Controls */}
-                          <div className="flex items-center space-x-1.5 bg-stone-200/60 p-1 rounded-lg">
+                          <div className="flex items-center space-x-1.5 bg-stone-200/60 dark:bg-stone-800 p-1 rounded-lg">
                             <button
                               onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
-                              className="p-1 rounded bg-white hover:bg-stone-100 text-stone-600 transition-all cursor-pointer"
+                              className="p-1 rounded bg-white dark:bg-stone-900 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-300 transition-all cursor-pointer"
                               disabled={item.quantity <= 1}
                             >
                               <Minus className="h-3 w-3" />
                             </button>
-                            <span className="font-sans font-black text-xs px-2.5 text-brand-black">
+                            <span className="font-sans font-black text-xs px-2.5 text-brand-black dark:text-white">
                               {item.quantity}
                             </span>
                             <button
                               onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-                              className="p-1 rounded bg-white hover:bg-stone-100 text-stone-600 transition-all cursor-pointer"
+                              className="p-1 rounded bg-white dark:bg-stone-900 hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-300 transition-all cursor-pointer"
                             >
                               <Plus className="h-3 w-3" />
                             </button>
@@ -220,7 +220,7 @@ export default function CartDrawer({
 
               {/* Footer / Summary Actions */}
               {cartItems.length > 0 && (
-                <div className="border-t border-stone-200 bg-stone-50 p-6 space-y-4">
+                <div className="border-t border-stone-200 dark:border-stone-800 bg-stone-50 dark:bg-stone-950 p-6 space-y-4">
                   {/* Promo Code Box */}
                   <div className="flex space-x-2">
                     <input
@@ -229,7 +229,7 @@ export default function CartDrawer({
                       value={promoCode}
                       onChange={(e) => setPromoCode(e.target.value)}
                       disabled={promoApplied}
-                      className="flex-grow bg-white border border-stone-300 rounded-xl px-3.5 py-2 text-xs font-sans focus:outline-none focus:border-brand-red disabled:bg-stone-100 disabled:text-stone-400 uppercase font-bold"
+                      className="flex-grow bg-white dark:bg-stone-900 border border-stone-300 dark:border-stone-800 rounded-xl px-3.5 py-2 text-xs font-sans focus:outline-none focus:border-brand-red disabled:bg-stone-100 disabled:text-stone-400 dark:text-white uppercase font-bold"
                     />
                     <button
                       onClick={handleApplyPromo}
@@ -241,7 +241,7 @@ export default function CartDrawer({
                   </div>
 
                   {promoApplied && (
-                    <div className="flex items-center justify-between text-xs font-sans font-bold text-emerald-600 bg-emerald-50 border border-emerald-100 p-2 rounded-lg">
+                    <div className="flex items-center justify-between text-xs font-sans font-bold text-emerald-600 dark:text-emerald-500 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/30 p-2 rounded-lg">
                       <span className="flex items-center gap-1">
                         <Sparkles className="h-4 w-4 animate-bounce" />
                         <span>TAAJWELCOME Code Active!</span>
@@ -251,17 +251,17 @@ export default function CartDrawer({
                   )}
 
                   {/* Summary Breakdown */}
-                  <div className="space-y-2 border-b border-stone-200/60 pb-4 text-xs">
+                  <div className="space-y-2 border-b border-stone-200/60 dark:border-stone-800 pb-4 text-xs">
                     {totals.subtotalOutright > 0 && (
-                      <div className="flex justify-between font-sans text-stone-600">
+                      <div className="flex justify-between font-sans text-stone-600 dark:text-stone-300">
                         <span>Outright Items Total:</span>
-                        <span className="font-bold text-brand-black">{formatNaira(totals.subtotalOutright)}</span>
+                        <span className="font-bold text-brand-black dark:text-white">{formatNaira(totals.subtotalOutright)}</span>
                       </div>
                     )}
                     {totals.immediateDeposit > 0 && (
-                      <div className="flex justify-between font-sans text-stone-600">
+                      <div className="flex justify-between font-sans text-stone-600 dark:text-stone-300">
                         <span>Financing Deposit Total:</span>
-                        <span className="font-bold text-brand-black">{formatNaira(totals.immediateDeposit)}</span>
+                        <span className="font-bold text-brand-black dark:text-white">{formatNaira(totals.immediateDeposit)}</span>
                       </div>
                     )}
                     {totals.weeklyInstallmentTotal > 0 && (
@@ -273,16 +273,16 @@ export default function CartDrawer({
                   </div>
 
                   {/* Total Checkout Sum */}
-                  <div className="flex justify-between items-center text-brand-black">
+                  <div className="flex justify-between items-center text-brand-black dark:text-white">
                     <div>
-                      <span className="block text-[10px] font-mono text-stone-400 font-bold uppercase tracking-wider">
+                      <span className="block text-[10px] font-mono text-stone-400 dark:text-stone-500 font-bold uppercase tracking-wider">
                         IMMEDIATE CHECKOUT PAYMENT
                       </span>
                       <span className="text-xl font-sans font-black tracking-tight block">
                         {formatNaira(totals.netImmediate)}
                       </span>
                     </div>
-                    <div className="text-right text-[10px] font-mono text-stone-400 font-bold">
+                    <div className="text-right text-[10px] font-mono text-stone-400 dark:text-stone-500 font-bold">
                       <span>LIFETIME: {formatNaira(totals.totalLifetimeCost)}</span>
                     </div>
                   </div>

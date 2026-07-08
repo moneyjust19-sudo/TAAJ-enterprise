@@ -92,9 +92,9 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
   };
 
   return (
-    <section className="py-20 bg-white" id="inquiry">
+    <section className="py-20 bg-white dark:bg-stone-900/50" id="inquiry">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="bg-white rounded-3xl border border-stone-200/60 shadow-xl shadow-stone-900/5 overflow-hidden" id="inquiry-card-container">
+        <div className="bg-white dark:bg-stone-900 rounded-3xl border border-stone-200/60 dark:border-stone-800 shadow-xl shadow-stone-900/5 overflow-hidden" id="inquiry-card-container">
           <div className="grid grid-cols-1 md:grid-cols-12">
             {/* Banner Side Panel */}
             <div className="md:col-span-4 bg-brand-dark p-8 text-white flex flex-col justify-between" id="inquiry-side-panel">
@@ -123,7 +123,7 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
             </div>
 
             {/* Form Side Panel */}
-            <div className="md:col-span-8 p-6 sm:p-10" id="inquiry-form-panel">
+            <div className="md:col-span-8 p-6 sm:p-10 dark:bg-stone-900" id="inquiry-form-panel">
               <AnimatePresence mode="wait">
                 {!formSubmitted ? (
                   <motion.div
@@ -132,7 +132,7 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
-                    <h4 className="font-display font-bold text-xl text-brand-dark mb-6 flex items-center space-x-2">
+                    <h4 className="font-display font-bold text-xl text-brand-dark dark:text-white mb-6 flex items-center space-x-2">
                       <span>Request a Quotation & Hire Purchase Deal</span>
                     </h4>
 
@@ -146,7 +146,7 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
                       {/* Name and Phone */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-1.5">
+                          <label className="block text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1.5">
                             Your Full Name *
                           </label>
                           <input
@@ -155,12 +155,12 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
                             required
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white font-medium"
+                            className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white dark:bg-stone-950 dark:text-white font-medium"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-1.5">
+                          <label className="block text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1.5">
                             Phone Number *
                           </label>
                           <input
@@ -169,7 +169,7 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
                             required
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white font-medium"
+                            className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white dark:bg-stone-950 dark:text-white font-medium"
                           />
                         </div>
                       </div>
@@ -177,29 +177,29 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
                       {/* Email and City */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-1.5">
-                            Email Address <span className="text-stone-400 font-normal">(Optional)</span>
+                          <label className="block text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1.5">
+                            Email Address <span className="text-stone-400 dark:text-stone-500 font-normal">(Optional)</span>
                           </label>
                           <input
                             type="email"
                             placeholder="e.g. babajide@gmail.com"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white font-medium"
+                            className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white dark:bg-stone-950 dark:text-white font-medium"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-1.5">
+                          <label className="block text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1.5">
                             Nearest Dealer City *
                           </label>
                           <select
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white cursor-pointer font-medium"
+                            className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white dark:bg-stone-950 dark:text-white cursor-pointer font-medium"
                           >
                             {NIGERIAN_CITIES.map((c, idx) => (
-                              <option key={idx} value={c}>
+                              <option key={idx} value={c} className="dark:bg-stone-900 dark:text-white">
                                 {c}
                               </option>
                             ))}
@@ -210,16 +210,16 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
                       {/* Product and Payment pref */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-1.5">
+                          <label className="block text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1.5">
                             Product Interest *
                           </label>
                           <select
                             value={productId}
                             onChange={(e) => setProductId(e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white cursor-pointer font-medium"
+                            className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white dark:bg-stone-950 dark:text-white cursor-pointer font-medium"
                           >
                             {products.map((p) => (
-                              <option key={p.id} value={p.id}>
+                              <option key={p.id} value={p.id} className="dark:bg-stone-900 dark:text-white">
                                 {p.name}
                               </option>
                             ))}
@@ -227,32 +227,32 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
                         </div>
 
                         <div>
-                          <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-1.5">
+                          <label className="block text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1.5">
                             Preferred Payment Method *
                           </label>
                           <select
                             value={paymentOption}
                             onChange={(e) => setPaymentOption(e.target.value as any)}
-                            className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white cursor-pointer font-medium"
+                            className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white dark:bg-stone-950 dark:text-white cursor-pointer font-medium"
                           >
-                            <option value="outright">Outright Purchase (Instant Discount)</option>
-                            <option value="6month">6-Month Installment Hire-Purchase</option>
-                            <option value="12month">12-Month Installment Hire-Purchase</option>
+                            <option value="outright" className="dark:bg-stone-900 dark:text-white">Outright Purchase (Instant Discount)</option>
+                            <option value="6month" className="dark:bg-stone-900 dark:text-white">6-Month Installment Hire-Purchase</option>
+                            <option value="12month" className="dark:bg-stone-900 dark:text-white">12-Month Installment Hire-Purchase</option>
                           </select>
                         </div>
                       </div>
 
                       {/* Message */}
                       <div>
-                        <label className="block text-xs font-bold text-stone-500 uppercase tracking-wider mb-1.5">
-                          Additional Message / Questions <span className="text-stone-400 font-normal">(Optional)</span>
+                        <label className="block text-xs font-bold text-stone-500 dark:text-stone-400 uppercase tracking-wider mb-1.5">
+                          Additional Message / Questions <span className="text-stone-400 dark:text-stone-500 font-normal">(Optional)</span>
                         </label>
                         <textarea
                           rows={3}
                           placeholder="Tell us if you want any accessories or specific delivery requests..."
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
-                          className="w-full px-4 py-3 rounded-xl border border-stone-200 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white resize-none font-medium"
+                          className="w-full px-4 py-3 rounded-xl border border-stone-200 dark:border-stone-700 focus:border-brand-green focus:ring focus:ring-emerald-100 outline-none text-sm font-sans transition-all bg-white dark:bg-stone-950 dark:text-white resize-none font-medium"
                         ></textarea>
                       </div>
 
@@ -276,25 +276,25 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
                     className="text-center py-8 space-y-6"
                     id="inquiry-success-container"
                   >
-                    <div className="bg-emerald-50 border border-emerald-150 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto text-brand-green">
+                    <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-150 dark:border-emerald-900/30 p-4 rounded-full w-20 h-20 flex items-center justify-center mx-auto text-brand-green">
                       <CheckCircle className="h-12 w-12 stroke-[2.5]" />
                     </div>
 
                     <div className="space-y-2">
-                      <h4 className="font-display font-bold text-2xl text-brand-dark">
+                      <h4 className="font-display font-bold text-2xl text-brand-dark dark:text-white">
                         Awesome, {name}!
                       </h4>
-                      <p className="font-sans text-sm text-stone-600 max-w-md mx-auto leading-relaxed font-medium">
+                      <p className="font-sans text-sm text-stone-600 dark:text-stone-300 max-w-md mx-auto leading-relaxed font-medium">
                         Your inquiry sheet for the <strong className="text-brand-green">{activeProduct?.name}</strong> has been logged in our dealers network successfully.
                       </p>
                     </div>
 
-                    <div className="bg-brand-cream border border-stone-200/80 p-5 rounded-2xl max-w-md mx-auto text-left space-y-3">
-                      <h5 className="font-display font-bold text-base text-brand-dark flex items-center gap-1.5">
+                    <div className="bg-brand-cream dark:bg-stone-950 border border-stone-200/80 dark:border-stone-800 p-5 rounded-2xl max-w-md mx-auto text-left space-y-3">
+                      <h5 className="font-display font-bold text-base text-brand-dark dark:text-white flex items-center gap-1.5">
                         <Sparkles className="h-4.5 w-4.5 text-brand-green" />
                         <span>Skip the wait: Send to WhatsApp!</span>
                       </h5>
-                      <p className="font-sans text-xs text-stone-600 leading-normal font-medium">
+                      <p className="font-sans text-xs text-stone-600 dark:text-stone-300 leading-normal font-medium">
                         To get a fast quote approval immediately, send your pre-filled details to our lead WhatsApp dealer directly!
                       </p>
 

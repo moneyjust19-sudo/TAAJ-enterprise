@@ -81,13 +81,13 @@ export default function InstallmentCalculator({ products, selectedProductId, onA
   const results = calculateFinance();
 
   return (
-    <section className="py-20 bg-stone-50 border-t border-stone-200/80" id="calculator">
+    <section className="py-20 bg-stone-50 dark:bg-stone-950 border-t border-stone-200/80 dark:border-stone-850" id="calculator">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="font-sans font-black text-3xl sm:text-4xl text-brand-black tracking-tight leading-tight uppercase">
+          <h2 className="font-sans font-black text-3xl sm:text-4xl text-brand-black dark:text-white tracking-tight leading-tight uppercase">
             Flexible Hire-Purchase Spreading
           </h2>
-          <p className="font-sans text-base sm:text-lg text-stone-600 mt-4 leading-relaxed font-medium">
+          <p className="font-sans text-base sm:text-lg text-stone-600 dark:text-stone-300 mt-4 leading-relaxed font-medium">
             Adjust down payments, view monthly plans, and calculate interest-friendly weekly rates. No hidden fees. Select your custom options below.
           </p>
         </div>
@@ -95,22 +95,22 @@ export default function InstallmentCalculator({ products, selectedProductId, onA
         {/* Calculator Widget Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch" id="calculator-widget-grid">
           {/* Inputs Section */}
-          <div className="lg:col-span-7 bg-white rounded-3xl border border-stone-200/60 p-6 sm:p-10 shadow-lg shadow-stone-900/5 flex flex-col justify-between" id="calc-inputs-card">
+          <div className="lg:col-span-7 bg-white dark:bg-stone-900 rounded-3xl border border-stone-200/60 dark:border-stone-800 p-6 sm:p-10 shadow-lg shadow-stone-900/5 flex flex-col justify-between" id="calc-inputs-card">
             <div className="space-y-8">
               {/* 1. Select Product */}
               <div>
-                <label className="block font-sans font-bold text-sm text-brand-dark uppercase tracking-wider mb-3">
+                <label className="block font-sans font-bold text-sm text-brand-dark dark:text-white uppercase tracking-wider mb-3">
                   1. Choose Vehicle model
                 </label>
                 <div className="relative" id="calc-product-select-container">
                   <select
                     value={activeProductId}
                     onChange={(e) => setActiveProductId(e.target.value)}
-                    className="w-full px-5 py-4 bg-white border border-stone-200 hover:border-stone-300 rounded-2xl font-sans text-sm font-bold text-brand-black focus:border-brand-red focus:outline-none focus:ring-4 focus:ring-brand-red/5 transition-all shadow-xs appearance-none cursor-pointer"
+                    className="w-full px-5 py-4 bg-white dark:bg-stone-950 border border-stone-200 dark:border-stone-800 hover:border-stone-300 dark:hover:border-stone-700 rounded-2xl font-sans text-sm font-bold text-brand-black dark:text-white focus:border-brand-red focus:outline-none focus:ring-4 focus:ring-brand-red/5 transition-all shadow-xs appearance-none cursor-pointer"
                     id="calc-product-dropdown"
                   >
                     {financeableProducts.map((prod) => (
-                      <option key={prod.id} value={prod.id}>
+                      <option key={prod.id} value={prod.id} className="dark:bg-stone-900 dark:text-white">
                         {prod.name} ({formatNaira(prod.priceNGN)})
                       </option>
                     ))}
@@ -123,7 +123,7 @@ export default function InstallmentCalculator({ products, selectedProductId, onA
 
               {/* 2. Choose Plan Option */}
               <div>
-                <label className="block font-sans font-bold text-sm text-brand-dark uppercase tracking-wider mb-3">
+                <label className="block font-sans font-bold text-sm text-brand-dark dark:text-white uppercase tracking-wider mb-3">
                   2. Select Repayment Term
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3" id="calc-term-select">
@@ -134,8 +134,8 @@ export default function InstallmentCalculator({ products, selectedProductId, onA
                     }}
                     className={`px-4 py-4 rounded-2xl border text-left transition-all cursor-pointer ${
                       planType === 'outright'
-                        ? 'border-brand-green bg-emerald-50/50 text-brand-dark font-bold shadow-md shadow-emerald-950/5'
-                        : 'border-stone-200 bg-white text-stone-600 hover:border-stone-300'
+                        ? 'border-brand-green bg-emerald-50/50 dark:bg-emerald-500/10 text-brand-dark dark:text-white font-bold shadow-md shadow-emerald-950/5'
+                        : 'border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700'
                     }`}
                     id="calc-term-outright"
                   >
@@ -152,8 +152,8 @@ export default function InstallmentCalculator({ products, selectedProductId, onA
                     }}
                     className={`px-4 py-4 rounded-2xl border text-left transition-all cursor-pointer ${
                       planType === '6month'
-                        ? 'border-brand-green bg-emerald-50/50 text-brand-dark font-bold shadow-md shadow-emerald-950/5'
-                        : 'border-stone-200 bg-white text-stone-600 hover:border-stone-300'
+                        ? 'border-brand-green bg-emerald-50/50 dark:bg-emerald-500/10 text-brand-dark dark:text-white font-bold shadow-md shadow-emerald-950/5'
+                        : 'border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700'
                     }`}
                     id="calc-term-6month"
                   >
@@ -170,8 +170,8 @@ export default function InstallmentCalculator({ products, selectedProductId, onA
                     }}
                     className={`px-4 py-4 rounded-2xl border text-left transition-all cursor-pointer ${
                       planType === '12month'
-                        ? 'border-brand-green bg-emerald-50/50 text-brand-dark font-bold shadow-md shadow-emerald-950/5'
-                        : 'border-stone-200 bg-white text-stone-600 hover:border-stone-300'
+                        ? 'border-brand-green bg-emerald-50/50 dark:bg-emerald-500/10 text-brand-dark dark:text-white font-bold shadow-md shadow-emerald-950/5'
+                        : 'border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 text-stone-600 dark:text-stone-300 hover:border-stone-300 dark:hover:border-stone-700'
                     }`}
                     id="calc-term-12month"
                   >
@@ -187,10 +187,10 @@ export default function InstallmentCalculator({ products, selectedProductId, onA
               {planType !== 'outright' && (
                 <div>
                   <div className="flex justify-between items-center mb-3">
-                    <label className="block font-sans font-bold text-sm text-brand-dark uppercase tracking-wider">
+                    <label className="block font-sans font-bold text-sm text-brand-dark dark:text-white uppercase tracking-wider">
                       3. Down Payment / Initial Deposit
                     </label>
-                    <span className="bg-emerald-50 border border-emerald-100 text-brand-green font-mono text-sm font-bold px-3 py-1 rounded-lg">
+                    <span className="bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 text-brand-green font-mono text-sm font-bold px-3 py-1 rounded-lg">
                       {depositPercent}% Down
                     </span>
                   </div>
@@ -201,7 +201,7 @@ export default function InstallmentCalculator({ products, selectedProductId, onA
                     step="5"
                     value={depositPercent}
                     onChange={(e) => setDepositPercent(Number(e.target.value))}
-                    className="w-full h-2.5 bg-stone-200 rounded-lg appearance-none cursor-pointer accent-brand-green"
+                    className="w-full h-2.5 bg-stone-200 dark:bg-stone-800 rounded-lg appearance-none cursor-pointer accent-brand-green"
                     id="calc-deposit-slider"
                   />
                   <div className="flex justify-between text-xs font-mono text-stone-400 mt-2">
@@ -214,11 +214,11 @@ export default function InstallmentCalculator({ products, selectedProductId, onA
             </div>
 
             {/* Quick Helper Notes */}
-            <div className="bg-stone-50 rounded-2xl p-4 mt-8 border border-stone-100 flex items-start space-x-3 text-xs text-stone-600 leading-normal">
+            <div className="bg-stone-50 dark:bg-stone-950 rounded-2xl p-4 mt-8 border border-stone-100 dark:border-stone-800 flex items-start space-x-3 text-xs text-stone-600 dark:text-stone-300 leading-normal">
               <Info className="h-4.5 w-4.5 text-brand-green flex-shrink-0 mt-0.5" />
               <div>
-                <p className="font-sans font-bold text-brand-dark">Guarantor Requirements:</p>
-                <p className="font-sans mt-0.5 text-stone-500 font-medium">
+                <p className="font-sans font-bold text-brand-dark dark:text-white">Guarantor Requirements:</p>
+                <p className="font-sans mt-0.5 text-stone-500 dark:text-stone-400 font-medium">
                   Hire-purchase terms require two (2) reliable local guarantors (with verified address / utility bills) and a valid national ID.
                 </p>
               </div>

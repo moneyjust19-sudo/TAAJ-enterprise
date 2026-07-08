@@ -46,10 +46,10 @@ export default function OrderTrackingModal({
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
-            className="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden z-10 border border-stone-200/80 max-h-[90vh] flex flex-col"
+            className="relative w-full max-w-3xl bg-white dark:bg-stone-900 rounded-3xl shadow-2xl overflow-hidden z-10 border border-stone-200/80 dark:border-stone-800 max-h-[90vh] flex flex-col"
           >
             {/* Header */}
-            <div className="px-6 py-5 border-b border-stone-100 flex justify-between items-center bg-brand-black text-white flex-shrink-0">
+            <div className="px-6 py-5 border-b border-stone-100 dark:border-stone-800 flex justify-between items-center bg-brand-black text-white flex-shrink-0">
               <div className="flex items-center space-x-2">
                 <Package className="h-5 w-5 text-brand-yellow" />
                 <span className="font-sans font-black text-lg tracking-tight uppercase">Track Assembly & Logistics</span>
@@ -73,18 +73,18 @@ export default function OrderTrackingModal({
                   placeholder="Search by Booking ID (e.g. TAAJ-XXXX) or Customer Name..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-stone-50 border border-stone-200 rounded-2xl pl-12 pr-4 py-3.5 text-sm font-sans focus:outline-none focus:border-brand-red font-medium"
+                  className="w-full bg-stone-50 dark:bg-stone-950 border border-stone-200 dark:border-stone-850 rounded-2xl pl-12 pr-4 py-3.5 text-sm font-sans focus:outline-none focus:border-brand-red text-brand-black dark:text-white font-medium"
                 />
               </div>
 
               {filteredOrders.length === 0 ? (
                 <div className="flex-1 flex flex-col items-center justify-center text-center py-16 space-y-4">
-                  <div className="bg-stone-50 p-6 rounded-full border border-stone-100">
+                  <div className="bg-stone-50 dark:bg-stone-950 p-6 rounded-full border border-stone-100 dark:border-stone-850">
                     <Package className="h-10 w-10 text-stone-300" />
                   </div>
                   <div>
-                    <h4 className="font-sans font-black text-lg text-stone-800">No Booking Records Found</h4>
-                    <p className="font-sans text-sm text-stone-500 max-w-sm mt-1 font-medium">
+                    <h4 className="font-sans font-black text-lg text-stone-800 dark:text-white">No Booking Records Found</h4>
+                    <p className="font-sans text-sm text-stone-500 dark:text-stone-400 max-w-sm mt-1 font-medium">
                       If you recently booked a vehicle outright or via finance terms, please check under your name, or complete a secure checkout to view tracking details here.
                     </p>
                   </div>
@@ -96,22 +96,22 @@ export default function OrderTrackingModal({
                     return (
                       <div
                         key={order.id}
-                        className="border border-stone-200 bg-stone-50/50 rounded-2xl p-5 sm:p-6 space-y-6"
+                        className="border border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/40 rounded-2xl p-5 sm:p-6 space-y-6"
                         id={`order-card-${order.id}`}
                       >
                         {/* Order Sub-header */}
-                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2.5 pb-4 border-b border-stone-200/60">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2.5 pb-4 border-b border-stone-200/60 dark:border-stone-800">
                           <div>
                             <span className="bg-brand-red text-white font-mono text-[9px] font-black px-2.5 py-1 rounded tracking-widest uppercase">
                               Booking: {order.id}
                             </span>
-                            <h4 className="font-sans font-black text-base text-brand-black mt-2">
+                            <h4 className="font-sans font-black text-base text-brand-black dark:text-white mt-2">
                               {order.customerName}
                             </h4>
                           </div>
                           <div className="text-left sm:text-right">
-                            <span className="block text-[10px] font-mono text-stone-400 font-bold uppercase">Placed On</span>
-                            <span className="font-sans text-xs font-semibold text-stone-700 flex items-center gap-1.5 mt-0.5">
+                            <span className="block text-[10px] font-mono text-stone-400 dark:text-stone-500 font-bold uppercase">Placed On</span>
+                            <span className="font-sans text-xs font-semibold text-stone-700 dark:text-stone-300 flex items-center gap-1.5 mt-0.5">
                               <Calendar className="h-3.5 w-3.5 text-brand-red" />
                               {new Date(order.createdAt).toLocaleDateString('en-NG', { month: 'long', day: 'numeric', year: 'numeric' })}
                             </span>
@@ -120,14 +120,14 @@ export default function OrderTrackingModal({
 
                         {/* Order Items manifest */}
                         <div>
-                          <span className="block text-[10px] font-mono text-stone-400 font-bold uppercase tracking-wider mb-2">
+                          <span className="block text-[10px] font-mono text-stone-400 dark:text-stone-500 font-bold uppercase tracking-wider mb-2">
                             Vehicle Manifest
                           </span>
                           <div className="space-y-1.5">
                             {order.items.map((item) => (
-                              <div key={item.id} className="flex justify-between items-center text-xs font-sans text-stone-700 font-medium">
+                              <div key={item.id} className="flex justify-between items-center text-xs font-sans text-stone-700 dark:text-stone-300 font-medium">
                                 <span>{item.product.name} (x{item.quantity})</span>
-                                <span className="font-mono text-stone-500 uppercase text-[10px]">
+                                <span className="font-mono text-stone-500 dark:text-stone-400 uppercase text-[10px]">
                                   {item.paymentOption === 'outright' ? 'Outright' : `HP Term (30% Deposit)`}
                                 </span>
                               </div>
@@ -137,12 +137,12 @@ export default function OrderTrackingModal({
 
                         {/* Visual Assembly & Logistics Progress Steps */}
                         <div>
-                          <span className="block text-[10px] font-mono text-stone-400 font-bold uppercase tracking-wider mb-5">
+                          <span className="block text-[10px] font-mono text-stone-400 dark:text-stone-500 font-bold uppercase tracking-wider mb-5">
                             Real-Time Assembly Status
                           </span>
                           <div className="relative pt-2 pb-6" id={`timeline-${order.id}`}>
                             {/* Horizontal Line background */}
-                            <div className="absolute top-6 left-5 right-5 sm:left-10 sm:right-10 h-1 bg-stone-200 z-0" />
+                            <div className="absolute top-6 left-5 right-5 sm:left-10 sm:right-10 h-1 bg-stone-200 dark:bg-stone-800 z-0" />
                             {/* Filled horizontal line */}
                             <div
                               className="absolute top-6 left-5 sm:left-10 h-1 bg-brand-red z-0 transition-all duration-500"
@@ -154,56 +154,64 @@ export default function OrderTrackingModal({
                               {/* Step 1 */}
                               <div className="flex flex-col items-center text-center">
                                 <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${
-                                  currentStep >= 1 ? 'bg-brand-red border-brand-red text-white' : 'bg-white border-stone-200 text-stone-400'
+                                  currentStep >= 1
+                                    ? 'bg-brand-red border-brand-red text-white'
+                                    : 'bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-400 dark:text-stone-500'
                                 }`}>
                                   <Clock className="h-4 w-4" />
                                 </div>
-                                <span className="block font-sans text-[10px] font-black text-brand-black mt-2 uppercase">Confirmed</span>
-                                <span className="block text-[9px] text-stone-400 mt-0.5">Booking verified</span>
+                                <span className="block font-sans text-[10px] font-black text-brand-black dark:text-white mt-2 uppercase">Confirmed</span>
+                                <span className="block text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">Booking verified</span>
                               </div>
 
                               {/* Step 2 */}
                               <div className="flex flex-col items-center text-center">
                                 <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${
-                                  currentStep >= 2 ? 'bg-brand-red border-brand-red text-white' : 'bg-white border-stone-200 text-stone-400'
+                                  currentStep >= 2
+                                    ? 'bg-brand-red border-brand-red text-white'
+                                    : 'bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-400 dark:text-stone-500'
                                 }`}>
                                   <Package className="h-4 w-4" />
                                 </div>
-                                <span className="block font-sans text-[10px] font-black text-brand-black mt-2 uppercase">Assembling</span>
-                                <span className="block text-[9px] text-stone-400 mt-0.5">Ikeja Assembly Plant</span>
+                                <span className="block font-sans text-[10px] font-black text-brand-black dark:text-white mt-2 uppercase">Assembling</span>
+                                <span className="block text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">Ikeja Assembly Plant</span>
                               </div>
 
                               {/* Step 3 */}
                               <div className="flex flex-col items-center text-center">
                                 <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${
-                                  currentStep >= 3 ? 'bg-brand-red border-brand-red text-white' : 'bg-white border-stone-200 text-stone-400'
+                                  currentStep >= 3
+                                    ? 'bg-brand-red border-brand-red text-white'
+                                    : 'bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-400 dark:text-stone-500'
                                 }`}>
                                   <Truck className="h-4 w-4" />
                                 </div>
-                                <span className="block font-sans text-[10px] font-black text-brand-black mt-2 uppercase">Dispatched</span>
-                                <span className="block text-[9px] text-stone-400 mt-0.5">With cargo freight</span>
+                                <span className="block font-sans text-[10px] font-black text-brand-black dark:text-white mt-2 uppercase">Dispatched</span>
+                                <span className="block text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">With cargo freight</span>
                               </div>
 
                               {/* Step 4 */}
                               <div className="flex flex-col items-center text-center">
                                 <div className={`w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${
-                                  currentStep >= 4 ? 'bg-brand-red border-brand-red text-white' : 'bg-white border-stone-200 text-stone-400'
+                                  currentStep >= 4
+                                    ? 'bg-brand-red border-brand-red text-white'
+                                    : 'bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800 text-stone-400 dark:text-stone-500'
                                 }`}>
                                   <CheckCircle2 className="h-4 w-4" />
                                 </div>
-                                <span className="block font-sans text-[10px] font-black text-brand-black mt-2 uppercase">Delivered</span>
-                                <span className="block text-[9px] text-stone-400 mt-0.5">Signed & ready</span>
+                                <span className="block font-sans text-[10px] font-black text-brand-black dark:text-white mt-2 uppercase">Delivered</span>
+                                <span className="block text-[9px] text-stone-400 dark:text-stone-500 mt-0.5">Signed & ready</span>
                               </div>
                             </div>
                           </div>
                         </div>
 
                         {/* Shipping Details info line */}
-                        <div className="bg-white border border-stone-200/60 p-4 rounded-xl flex items-start space-x-3 text-xs text-stone-600 leading-normal">
+                        <div className="bg-white dark:bg-stone-900 border border-stone-200/60 dark:border-stone-800 p-4 rounded-xl flex items-start space-x-3 text-xs text-stone-600 dark:text-stone-300 leading-normal">
                           <MapPin className="h-4.5 w-4.5 text-brand-red flex-shrink-0 mt-0.5" />
                           <div>
-                            <span className="block font-sans font-bold text-brand-black">Delivery Location Manifest:</span>
-                            <p className="font-sans text-stone-500 mt-0.5">
+                            <span className="block font-sans font-bold text-brand-black dark:text-white">Delivery Location Manifest:</span>
+                            <p className="font-sans text-stone-500 dark:text-stone-400 mt-0.5">
                               {order.address}, {order.city}, {order.state} State (Nigeria)
                             </p>
                           </div>
@@ -218,7 +226,7 @@ export default function OrderTrackingModal({
             </div>
 
             {/* Footer */}
-            <div className="bg-stone-50 px-6 py-4 border-t border-stone-100 flex justify-between items-center text-xs text-stone-400 flex-shrink-0">
+            <div className="bg-stone-50 dark:bg-stone-950 px-6 py-4 border-t border-stone-100 dark:border-stone-850 flex justify-between items-center text-xs text-stone-400 dark:text-stone-500 flex-shrink-0">
               <span className="flex items-center gap-1">
                 <ShieldCheck className="h-3.5 w-3.5 text-brand-yellow" />
                 <span>Verified TAAJ Assembly logs</span>

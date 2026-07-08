@@ -20,6 +20,7 @@ export default function App() {
   const [adminOpen, setAdminOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'tricycle' | 'bicycle' | 'motorcycle' | 'generator' | 'spare_part' | 'electric_bike'>('all');
   const [searchTerm, setSearchTerm] = useState('');
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   // E-commerce states
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -40,6 +41,16 @@ export default function App() {
 
   // Load state on mount
   useEffect(() => {
+    // Load Dark Mode first to avoid flashing
+    const storedDarkMode = localStorage.getItem('taaj_dark_mode');
+    if (storedDarkMode === 'true') {
+      setIsDarkMode(true);
+      document.documentElement.classList.add('dark');
+    } else {
+      setIsDarkMode(false);
+      document.documentElement.classList.remove('dark');
+    }
+
     // Load Inquiries
     const stored = localStorage.getItem('naija_wheels_inquiries');
     if (stored) {
@@ -184,6 +195,18 @@ export default function App() {
   const handleClearAllInquiries = () => {
     if (window.confirm('Are you sure you want to clear all lead inquiries? This will reset the list.')) {
       saveInquiries([]);
+    }
+  };
+
+  const handleToggleDarkMode = () => {
+    const nextMode = !isDarkMode;
+    setIsDarkMode(nextMode);
+    if (nextMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('taaj_dark_mode', 'true');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('taaj_dark_mode', 'false');
     }
   };
 
@@ -368,7 +391,7 @@ export default function App() {
   });
 
   return (
-    <div className="min-h-screen bg-stone-50 flex flex-col justify-between font-sans selection:bg-brand-red/10 selection:text-brand-red animate-fade-in" id="app-root">
+    <div className="min-h-screen bg-stone-50 dark:bg-stone-950 flex flex-col justify-between font-sans selection:bg-brand-red/10 selection:text-brand-red animate-fade-in" id="app-root">
       
       {/* Header */}
       <Header
@@ -391,6 +414,8 @@ export default function App() {
         onOpenOrders={() => setIsTrackingOpen(true)}
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
+        darkMode={isDarkMode}
+        onToggleDarkMode={handleToggleDarkMode}
       />
 
       <main className="flex-grow">
@@ -453,25 +478,25 @@ export default function App() {
               </section>
 
               {/* Product Catalog Section */}
-              <section className="py-20 bg-white" id="products">
+              <section className="py-20 bg-white dark:bg-stone-900 border-t border-stone-200/50 dark:border-stone-850" id="products">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   {/* Category Section Header */}
                   <div className="mb-10">
                     <div className="max-w-xl text-left mb-6">
-                      <div className="inline-flex items-center space-x-1.5 bg-brand-yellow/10 border border-brand-yellow/30 text-brand-black px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-3">
+                      <div className="inline-flex items-center space-x-1.5 bg-brand-yellow/10 dark:bg-brand-yellow/20 border border-brand-yellow/30 dark:border-brand-yellow/45 text-brand-black dark:text-white px-3 py-1 rounded-full text-xs font-mono font-bold uppercase tracking-wider mb-3">
                         <Award className="h-4 w-4 text-brand-red" />
                         <span>Authorized distributor</span>
                       </div>
-                      <h2 className="font-sans font-black text-3xl sm:text-4xl text-brand-black tracking-tight leading-tight uppercase">
+                      <h2 className="font-sans font-black text-3xl sm:text-4xl text-brand-black dark:text-white tracking-tight leading-tight uppercase">
                         TAAJ INVENTORY SHOWCASE
                       </h2>
-                      <p className="font-sans text-sm sm:text-base text-stone-500 mt-2 font-medium">
+                      <p className="font-sans text-sm sm:text-base text-stone-500 dark:text-stone-400 mt-2 font-medium">
                         Explore our premium lineup of brand-new and Tokunbo tricycles (Keke Maruwa), rugged motorcycles, commercial generators, swappable electric bikes, and original spare parts. All available for outright purchase or flexible finance terms.
                       </p>
                     </div>
 
                     {/* Integrated Search & Filter Controls (Mobile-First responsive) */}
-                    <div className="flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center bg-stone-50 border border-stone-200/60 p-4 rounded-3xl" id="integrated-controls">
+                    <div className="flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center bg-stone-50 dark:bg-stone-950 border border-stone-200/60 dark:border-stone-800 p-4 rounded-3xl" id="integrated-controls">
                       {/* Search Bar */}
                       <div className="relative flex-1 max-w-lg">
                         <span className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
@@ -482,7 +507,7 @@ export default function App() {
                           value={searchTerm}
                           onChange={(e) => setSearchTerm(e.target.value)}
                           placeholder="Search spare parts (clutch, tire), tricycles, brands..."
-                          className="w-full pl-11 pr-10 py-3.5 bg-white border border-stone-200 focus:border-brand-red rounded-2xl font-sans text-sm font-bold text-brand-black placeholder-stone-400 focus:outline-none focus:ring-4 focus:ring-brand-red/5 transition-all shadow-xs"
+                          className="w-full pl-11 pr-10 py-3.5 bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-800 focus:border-brand-red focus:ring-4 focus:ring-brand-red/10 rounded-2xl font-sans text-sm font-bold text-brand-black dark:text-white placeholder-stone-400 focus:outline-none focus:ring-brand-red/5 transition-all shadow-xs"
                           id="catalog-inline-search"
                         />
                         {searchTerm && (
@@ -496,7 +521,7 @@ export default function App() {
                       </div>
 
                       {/* Filter Tabs */}
-                      <div className="flex items-center space-x-1.5 bg-white p-1 rounded-2xl border border-stone-200/50 overflow-x-auto max-w-full no-scrollbar" id="catalog-filters">
+                      <div className="flex items-center space-x-1.5 bg-white dark:bg-stone-900 p-1 rounded-2xl border border-stone-200/50 dark:border-stone-850 overflow-x-auto max-w-full no-scrollbar" id="catalog-filters">
                         {(['all', 'tricycle', 'motorcycle', 'electric_bike', 'generator', 'spare_part'] as const).map((cat) => (
                           <button
                             key={cat}
@@ -504,7 +529,7 @@ export default function App() {
                             className={`px-3.5 py-2.5 rounded-xl text-xs font-sans font-black transition-all uppercase whitespace-nowrap cursor-pointer ${
                               selectedCategory === cat
                                 ? 'bg-brand-red text-white shadow-md shadow-brand-red/10'
-                                : 'text-stone-600 hover:text-brand-red hover:bg-stone-50'
+                                : 'text-stone-600 dark:text-stone-400 hover:text-brand-red hover:bg-stone-50 dark:hover:bg-stone-800'
                             }`}
                             id={`filter-btn-${cat}`}
                           >
@@ -537,9 +562,9 @@ export default function App() {
                       ))}
                     </div>
                   ) : (
-                    <div className="text-center py-16 bg-stone-50 rounded-3xl border border-stone-200/80 max-w-xl mx-auto" id="products-empty-state">
-                      <p className="font-sans font-bold text-lg text-stone-700">No matching items found</p>
-                      <p className="font-sans text-stone-500 text-sm mt-1">
+                    <div className="text-center py-16 bg-stone-50 dark:bg-stone-950 rounded-3xl border border-stone-200/80 dark:border-stone-800 max-w-xl mx-auto" id="products-empty-state">
+                      <p className="font-sans font-bold text-lg text-stone-700 dark:text-stone-300">No matching items found</p>
+                      <p className="font-sans text-stone-500 dark:text-stone-400 text-sm mt-1">
                         Try searching for popular brands like "Bajaj", "TVS", "Spiro", "Honda" or parts keywords like "engine", "clutch", "tire", or "generator".
                       </p>
                       <button
@@ -557,17 +582,17 @@ export default function App() {
               </section>
 
               {/* Customer Stories / Testimonials Section */}
-              <section className="py-20 bg-white" id="testimonials">
+              <section className="py-20 bg-white dark:bg-stone-900 border-t border-stone-200/50 dark:border-stone-850" id="testimonials">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                   {/* Section Title */}
                   <div className="text-center max-w-2xl mx-auto mb-16">
                     <span className="font-sans font-black text-xs text-brand-red uppercase tracking-widest bg-brand-red/5 border border-brand-red/15 px-4 py-1.5 rounded-full inline-block mb-3">
                       VERIFIED REVIEWS
                     </span>
-                    <h2 className="font-sans font-black text-3xl sm:text-4xl text-brand-black tracking-tight uppercase">
+                    <h2 className="font-sans font-black text-3xl sm:text-4xl text-brand-black dark:text-white tracking-tight uppercase">
                       TRUSTED BY NIGERIAN FLEETS
                     </h2>
-                    <p className="font-sans text-sm text-stone-500 mt-2 font-medium">
+                    <p className="font-sans text-sm text-stone-500 dark:text-stone-400 mt-2 font-medium">
                       See why transport groups, agricultural coops, and individual owners across Nigeria trust TAAJ Commercial for reliable performance and easy spreading terms.
                     </p>
                   </div>
@@ -577,7 +602,7 @@ export default function App() {
                     {TESTIMONIALS.map((test) => (
                       <div
                         key={test.id}
-                        className="bg-stone-50 border border-stone-200/60 rounded-3xl p-6 sm:p-8 hover:shadow-xl transition-all flex flex-col justify-between shadow-sm"
+                        className="bg-stone-50 dark:bg-stone-950 border border-stone-200/60 dark:border-stone-800 rounded-3xl p-6 sm:p-8 hover:shadow-xl transition-all flex flex-col justify-between shadow-sm"
                         id={`testimonial-card-${test.id}`}
                       >
                         <div className="space-y-4">
@@ -588,18 +613,18 @@ export default function App() {
                             ))}
                           </div>
                           {/* Review comment */}
-                          <p className="font-sans text-sm sm:text-base text-stone-700 leading-relaxed italic font-medium">
+                          <p className="font-sans text-sm sm:text-base text-stone-700 dark:text-stone-300 leading-relaxed italic font-medium">
                             &ldquo;{test.comment}&rdquo;
                           </p>
                         </div>
 
                         {/* Customer profile info row */}
-                        <div className="mt-8 pt-6 border-t border-stone-200/60 flex items-center space-x-3.5">
+                        <div className="mt-8 pt-6 border-t border-stone-200/60 dark:border-stone-800 flex items-center space-x-3.5">
                           <div>
-                            <h4 className="font-sans font-black text-sm text-brand-black leading-tight">
+                            <h4 className="font-sans font-black text-sm text-brand-black dark:text-white leading-tight">
                               {test.name}
                             </h4>
-                            <span className="block font-mono text-[9px] text-stone-400 font-bold uppercase mt-0.5">
+                            <span className="block font-mono text-[9px] text-stone-400 dark:text-stone-500 font-bold uppercase mt-0.5">
                               {test.role} &bull; {test.location}
                             </span>
                           </div>

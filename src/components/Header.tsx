@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Phone, ShieldCheck, ShoppingCart, Heart, Search } from 'lucide-react';
+import { Menu, X, Phone, ShieldCheck, ShoppingCart, Heart, Search, Sun, Moon, Package } from 'lucide-react';
 import TaajLogo from './TaajLogo';
 
 interface HeaderProps {
@@ -15,6 +15,8 @@ interface HeaderProps {
   orderCount: number;
   searchTerm: string;
   onSearchChange: (value: string) => void;
+  darkMode: boolean;
+  onToggleDarkMode: () => void;
 }
 
 export default function Header({
@@ -30,6 +32,8 @@ export default function Header({
   orderCount,
   searchTerm,
   onSearchChange,
+  darkMode,
+  onToggleDarkMode,
 }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -46,13 +50,13 @@ export default function Header({
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-stone-200/80 shadow-sm" id="main-header">
+    <header className="sticky top-0 z-50 bg-white dark:bg-brand-dark border-b border-stone-200/80 dark:border-stone-800 shadow-sm transition-colors duration-200" id="main-header">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo & Search Block */}
           <div className="flex items-center space-x-6">
             <div className="cursor-pointer" onClick={() => handleNavClick('home')} id="logo-container">
-              <TaajLogo className="scale-95 origin-left" />
+              <TaajLogo className="scale-105 origin-left" />
             </div>
 
             {/* Desktop Search Bar */}
@@ -65,7 +69,7 @@ export default function Header({
                 value={searchTerm}
                 onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="Search spare parts, tricycles..."
-                className="w-full pl-10 pr-8 py-2 bg-stone-50 hover:bg-stone-100/50 focus:bg-white border border-stone-200/80 rounded-2xl font-sans text-xs font-bold text-brand-black placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-red/10 focus:border-brand-red transition-all"
+                className="w-full pl-10 pr-8 py-2 bg-stone-50 dark:bg-stone-900 hover:bg-stone-100/50 focus:bg-white dark:focus:bg-brand-dark border border-stone-200/80 dark:border-stone-800 rounded-2xl font-sans text-xs font-bold text-brand-black dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-red/10 focus:border-brand-red transition-all"
                 id="header-search-input"
               />
               {searchTerm && (
@@ -86,10 +90,10 @@ export default function Header({
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
-                className={`px-3.5 py-2 rounded-lg font-sans text-sm font-bold transition-all uppercase ${
+                className={`px-3.5 py-2 rounded-lg font-sans text-sm font-extrabold transition-all uppercase cursor-pointer ${
                   activeSection === item.id && !adminOpen
-                    ? 'bg-brand-red/5 text-brand-red'
-                    : 'text-stone-700 hover:text-brand-red hover:bg-stone-50'
+                    ? 'bg-brand-red/5 dark:bg-brand-red/10 text-brand-red font-black'
+                    : 'text-stone-900 dark:text-stone-100 hover:text-brand-red dark:hover:text-brand-red hover:bg-stone-50 dark:hover:bg-stone-900'
                 }`}
                 id={`nav-link-${item.id}`}
               >
@@ -100,20 +104,34 @@ export default function Header({
 
           {/* Actions */}
           <div className="hidden md:flex items-center space-x-3" id="desktop-actions">
-            {/* Wishlist Button */}
+            {/* Dark Mode Toggle */}
             <button
-              onClick={onOpenWishlist}
-              className="p-2.5 rounded-xl text-stone-600 hover:text-brand-red hover:bg-stone-50 transition-all relative cursor-pointer"
-              title="My Wishlist"
-              id="header-wishlist-btn"
+              onClick={onToggleDarkMode}
+              className="p-2.5 rounded-xl text-stone-600 dark:text-stone-400 hover:text-brand-red hover:bg-stone-50 dark:hover:bg-stone-900 transition-all relative cursor-pointer"
+              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              id="header-dark-mode-btn"
             >
-              <Heart className="h-5 w-5" />
-              {wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-brand-red text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center animate-bounce shadow-md">
-                  {wishlistCount}
+              {darkMode ? <Sun className="h-5 w-5 text-brand-yellow" /> : <Moon className="h-5 w-5" />}
+            </button>
+
+
+
+            {/* Shopping Cart Button */}
+            <button
+              onClick={onOpenCart}
+              className="p-2.5 rounded-xl text-stone-600 dark:text-stone-400 hover:text-brand-red hover:bg-stone-50 dark:hover:bg-stone-900 transition-all relative cursor-pointer"
+              title="My Shopping Cart"
+              id="header-cart-btn"
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-brand-red text-white text-[9px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-md animate-bounce">
+                  {cartCount}
                 </span>
               )}
             </button>
+
+
 
             <a
               href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial,%20I%20am%20interested%20in%20your%20vehicles%20and%20spare%20parts!"
@@ -129,24 +147,38 @@ export default function Header({
 
           {/* Mobile Actions */}
           <div className="md:hidden flex items-center space-x-2" id="mobile-menu-actions">
-            {/* Wishlist icon for mobile */}
+            {/* Dark Mode Toggle for Mobile */}
             <button
-              onClick={onOpenWishlist}
-              className="p-2.5 rounded-xl text-stone-600 hover:text-brand-red relative cursor-pointer"
-              title="Wishlist"
-              id="mobile-wishlist-btn"
+              onClick={onToggleDarkMode}
+              className="p-2.5 rounded-xl text-stone-600 dark:text-stone-400 hover:text-brand-red relative cursor-pointer"
+              title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              id="mobile-dark-mode-btn"
             >
-              <Heart className="h-5.5 w-5.5" />
-              {wishlistCount > 0 && (
-                <span className="absolute top-1 right-1 bg-brand-red text-white text-[9px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-md">
-                  {wishlistCount}
+              {darkMode ? <Sun className="h-5.5 w-5.5 text-brand-yellow" /> : <Moon className="h-5.5 w-5.5" />}
+            </button>
+
+
+
+            {/* Cart icon for Mobile */}
+            <button
+              onClick={onOpenCart}
+              className="p-2.5 rounded-xl text-stone-600 dark:text-stone-400 hover:text-brand-red relative cursor-pointer"
+              title="Cart"
+              id="mobile-cart-btn"
+            >
+              <ShoppingCart className="h-5.5 w-5.5" />
+              {cartCount > 0 && (
+                <span className="absolute top-1 right-1 bg-brand-red text-white text-[9px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-md animate-bounce">
+                  {cartCount}
                 </span>
               )}
             </button>
 
+
+
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-stone-50 hover:bg-stone-100 border border-stone-100 text-stone-700 transition-colors cursor-pointer"
+              className="p-2.5 rounded-xl bg-stone-50 dark:bg-stone-900 hover:bg-stone-100 dark:hover:bg-stone-850 border border-stone-100 dark:border-stone-800 text-stone-700 dark:text-stone-300 transition-colors cursor-pointer"
               id="mobile-menu-toggle"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -157,7 +189,7 @@ export default function Header({
 
       {/* Mobile Menu Panel */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-stone-100 bg-white" id="mobile-menu-panel">
+        <div className="md:hidden border-t border-stone-100 dark:border-stone-850 bg-white dark:bg-brand-dark" id="mobile-menu-panel">
           <div className="px-4 pt-4 pb-6 space-y-4">
             {/* Mobile Search Bar */}
             <div className="relative w-full" id="mobile-search-container">
@@ -169,7 +201,7 @@ export default function Header({
                 value={searchTerm}
                 onChange={(e) => onSearchChange(e.target.value)}
                 placeholder="Search parts, engines, vehicles..."
-                className="w-full pl-10 pr-10 py-3 bg-stone-50 border border-stone-200 rounded-2xl font-sans text-sm text-brand-black placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-red/10 focus:border-brand-red transition-all"
+                className="w-full pl-10 pr-10 py-3 bg-stone-50 dark:bg-stone-900 border border-stone-200 dark:border-stone-800 rounded-2xl font-sans text-sm text-brand-black dark:text-stone-100 placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-brand-red/10 focus:border-brand-red transition-all"
                 id="mobile-search-input"
               />
               {searchTerm && (
@@ -189,10 +221,10 @@ export default function Header({
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`block w-full text-left px-4 py-3 rounded-xl font-sans text-base font-bold transition-colors ${
+                  className={`block w-full text-left px-4 py-3 rounded-xl font-sans text-base font-extrabold transition-colors cursor-pointer ${
                     activeSection === item.id && !adminOpen
-                      ? 'bg-brand-red/5 text-brand-red'
-                      : 'text-stone-700 hover:bg-stone-50 hover:text-brand-red'
+                      ? 'bg-brand-red/5 dark:bg-brand-red/10 text-brand-red font-black'
+                      : 'text-stone-900 dark:text-stone-100 hover:bg-stone-50 dark:hover:bg-stone-900 hover:text-brand-red'
                   }`}
                   id={`mobile-nav-link-${item.id}`}
                 >
@@ -201,7 +233,7 @@ export default function Header({
               ))}
             </div>
 
-            <div className="pt-4 border-t border-stone-100 flex flex-col space-y-2">
+            <div className="pt-4 border-t border-stone-100 dark:border-stone-800 flex flex-col space-y-2.5">
               <a
                 href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial,%20I%20am%20interested%20in%20your%20commercial%20vehicles%20and%20spare%20parts!"
                 target="_blank"

@@ -8,10 +8,10 @@ interface HeroProps {
 
 export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
   return (
-    <section className="relative overflow-hidden bg-brand-cream text-brand-dark" id="home">
+    <section className="relative overflow-hidden bg-brand-cream dark:bg-brand-dark text-brand-dark dark:text-stone-100" id="home">
       {/* Background with Overlay */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-cream via-brand-cream/95 to-brand-cream/40 md:to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-cream via-brand-cream/95 to-brand-cream/40 md:to-transparent dark:from-brand-dark dark:via-brand-dark/95 dark:to-brand-dark/40"></div>
         {/* Animated ambient decorative lights */}
         <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-brand-green/5 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl animate-pulse delay-75"></div>
@@ -22,7 +22,7 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
           
           {/* Left Column: Authentic Brand Copy */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left space-y-6" id="hero-copy-col">
-            <div className="inline-flex items-center space-x-1.5 bg-brand-red/5 border border-brand-red/15 text-brand-red px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider self-start">
+            <div className="inline-flex items-center space-x-1.5 bg-brand-red/5 border border-brand-red/15 text-brand-red dark:text-brand-red px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider self-start">
               <span>OFFICIAL IBADAN DISTRIBUTOR & SALES HUB</span>
             </div>
 
@@ -30,7 +30,7 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-sans text-4xl sm:text-5xl lg:text-6.5xl font-black tracking-tight text-brand-dark leading-[1.08] uppercase"
+              className="font-sans text-4xl sm:text-5xl lg:text-6.5xl font-black tracking-tight text-brand-dark dark:text-white leading-[1.08] uppercase"
               id="hero-heading"
             >
               TAAJ Commercial <br />
@@ -43,10 +43,10 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-sans text-sm sm:text-base text-stone-600 max-w-2xl leading-relaxed font-medium"
+              className="font-sans text-sm sm:text-base text-stone-600 dark:text-stone-300 max-w-2xl leading-relaxed font-medium"
               id="hero-subtext"
             >
-              Direct authorized distributors of brand new and premium foreign-used (<span className="text-brand-dark font-bold">Tokunbo</span>) motorcycles, tricycles (Keke Maruwa), commercial generators, and original replacement spare parts. Serving fleets, riders, and businesses across Nigeria with fair cash discounts and flexible installment spreading plans.
+              Direct authorized distributors of brand new and premium foreign-used (<span className="text-brand-dark dark:text-white font-bold">Tokunbo</span>) motorcycles, tricycles (Keke Maruwa), commercial generators, and original replacement spare parts. Serving fleets, riders, and businesses across Nigeria with fair cash discounts and flexible installment spreading plans.
             </motion.p>
 
             {/* CTAs */}
@@ -67,10 +67,10 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
               </button>
 
               <a
-                href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises,%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20your%20vehicles%20and%20spare%20parts."
+                href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises,%20I%20am%20interested%20in%20making%20an%20enquiry%20about%2520your%2520vehicles%2520and%2520spare%2520parts."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white hover:bg-stone-50 text-brand-dark border border-stone-200/80 font-sans font-black px-8 py-4 rounded-full shadow-xs hover:shadow-md transition-all text-center flex items-center justify-center space-x-2 cursor-pointer uppercase text-xs tracking-wider"
+                className="bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 text-brand-dark dark:text-white border border-stone-200/80 dark:border-stone-800 font-sans font-black px-8 py-4 rounded-full shadow-xs hover:shadow-md transition-all text-center flex items-center justify-center space-x-2 cursor-pointer uppercase text-xs tracking-wider"
                 id="hero-cta-whatsapp"
               >
                 <span>Talk to Sales</span>
@@ -82,14 +82,14 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="pt-6 border-t border-stone-200/60 w-full"
+              className="pt-6 border-t border-stone-200/60 dark:border-stone-800 w-full"
             >
               <p className="text-[10px] font-mono font-bold text-stone-400 uppercase tracking-widest mb-3">Authorized Brands & Parts Supplied</p>
               <div className="flex flex-wrap gap-2">
                 {['BAJAJ BOXER', 'TVS HLX', 'HONDA', 'HAOJUE', 'HERO', 'YAMAHA', 'SPIRO'].map((brand) => (
                   <span 
                     key={brand} 
-                    className="px-3.5 py-1.5 bg-white hover:bg-brand-red/5 border border-stone-200 hover:border-brand-red/20 text-stone-700 hover:text-brand-red font-display font-black text-[10px] rounded-xl transition-all duration-300 tracking-wider shadow-xs hover:shadow-xs cursor-default"
+                    className="px-3.5 py-1.5 bg-white dark:bg-stone-900 hover:bg-brand-red/5 dark:hover:bg-brand-red/10 border border-stone-200 dark:border-stone-800 hover:border-brand-red/20 text-stone-700 dark:text-stone-300 hover:text-brand-red font-display font-black text-[10px] rounded-xl transition-all duration-300 tracking-wider shadow-xs hover:shadow-xs cursor-default"
                   >
                     {brand}
                   </span>
@@ -102,7 +102,7 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.35 }}
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mt-6 bg-white/90 backdrop-blur-md border border-stone-200/80 p-5 sm:p-6 rounded-3xl shadow-sm"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mt-6 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md border border-stone-200/80 dark:border-stone-800 p-5 sm:p-6 rounded-3xl shadow-sm"
             >
               <div className="flex flex-col justify-between space-y-3">
                 <div className="flex items-start space-x-3">
@@ -110,8 +110,8 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-display font-black text-xs text-stone-900 uppercase tracking-wider">HEAD OFFICE</h4>
-                    <p className="font-sans text-xs text-stone-500 mt-1 leading-relaxed">Beside Total Filling Station, Shasha Road Ojoo, Ibadan.</p>
+                    <h4 className="font-display font-black text-xs text-stone-900 dark:text-white uppercase tracking-wider">HEAD OFFICE</h4>
+                    <p className="font-sans text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">Beside Total Filling Station, Shasha Road Ojoo, Ibadan.</p>
                   </div>
                 </div>
                 <a 
@@ -122,14 +122,14 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
                   <span>08036664739</span>
                 </a>
               </div>
-              <div className="flex flex-col justify-between space-y-3 border-t sm:border-t-0 sm:border-l border-stone-150 pt-4 sm:pt-0 sm:pl-5">
+              <div className="flex flex-col justify-between space-y-3 border-t sm:border-t-0 sm:border-l border-stone-150 dark:border-stone-800 pt-4 sm:pt-0 sm:pl-5">
                 <div className="flex items-start space-x-3">
                   <div className="p-2 bg-emerald-500/5 text-emerald-600 rounded-xl border border-emerald-500/10 mt-0.5">
                     <MapPin className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="font-display font-black text-xs text-stone-900 uppercase tracking-wider">BRANCH OFFICE</h4>
-                    <p className="font-sans text-xs text-stone-500 mt-1 leading-relaxed">NW3/2, Adebisi Street, Idikan Feleye, Ibadan.</p>
+                    <h4 className="font-display font-black text-xs text-stone-900 dark:text-white uppercase tracking-wider">BRANCH OFFICE</h4>
+                    <p className="font-sans text-xs text-stone-600 dark:text-stone-400 mt-1 leading-relaxed">NW3/2, Adebisi Street, Idikan Feleye, Ibadan.</p>
                   </div>
                 </div>
                 <a 
@@ -148,7 +148,7 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
           {/* Right Column: Dynamic showroom collage showing real vehicles (replaces empty placeholder) */}
           <div className="lg:col-span-5 relative w-full h-[320px] sm:h-[400px] lg:h-[460px] flex items-center justify-center mt-6 lg:mt-0" id="hero-visual-col">
             {/* Outer stylized background borders */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-brand-red/5 to-brand-yellow/5 rounded-[40px] border border-stone-200/40 rotate-1 -z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-brand-red/5 to-brand-yellow/5 rounded-[40px] border border-stone-200/40 dark:border-stone-800 rotate-1 -z-10"></div>
             
             {/* Main Interactive Spotlight Showroom Card */}
             <div className="relative w-[90%] h-[90%] bg-stone-900 rounded-3xl border border-stone-800 shadow-2xl overflow-hidden group flex flex-col justify-end p-6">
