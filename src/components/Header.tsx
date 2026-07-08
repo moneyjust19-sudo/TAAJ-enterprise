@@ -134,7 +134,7 @@ export default function Header({
 
 
             <a
-              href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial,%20I%20am%20interested%20in%20your%20vehicles%20and%20spare%20parts!"
+              href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises%2C%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20your%20products"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-brand-red hover:bg-brand-red/90 text-white px-5 py-2.5 rounded-full text-sm font-bold flex items-center space-x-2 shadow-lg shadow-brand-red/10 hover:shadow-brand-red/20 transition-all transform hover:-translate-y-0.5 cursor-pointer"
@@ -235,7 +235,7 @@ export default function Header({
 
             <div className="pt-4 border-t border-stone-100 dark:border-stone-800 flex flex-col space-y-2.5">
               <a
-                href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial,%20I%20am%20interested%20in%20your%20commercial%20vehicles%20and%20spare%20parts!"
+                href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises%2C%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20your%20products"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full bg-brand-red hover:bg-brand-red/90 text-white px-4 py-3 rounded-full text-center font-bold flex items-center justify-center space-x-2 cursor-pointer"

@@ -67,7 +67,7 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
               </button>
 
               <a
-                href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises,%20I%20am%20interested%20in%20making%20an%20enquiry%20about%2520your%2520vehicles%2520and%2520spare%2520parts."
+                href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises%2C%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20your%20products"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white dark:bg-stone-900 hover:bg-stone-50 dark:hover:bg-stone-850 text-brand-dark dark:text-white border border-stone-200/80 dark:border-stone-800 font-sans font-black px-8 py-4 rounded-full shadow-xs hover:shadow-md transition-all text-center flex items-center justify-center space-x-2 cursor-pointer uppercase text-xs tracking-wider"

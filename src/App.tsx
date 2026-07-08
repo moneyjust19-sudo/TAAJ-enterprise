@@ -757,7 +757,7 @@ export default function App() {
 
       {/* Floating WhatsApp Action Widget (Crucial for Nigerian lead generation!) */}
       <a
-        href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises,%20I%20am%20interested%20in%20your%20vehicles%20and%20spare%20parts!"
+        href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises%2C%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20your%20products"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-40 bg-brand-red hover:bg-brand-red/90 hover:scale-110 active:scale-95 text-white p-4 rounded-full shadow-2xl transition-all flex items-center justify-center border border-brand-red/20 group cursor-pointer"

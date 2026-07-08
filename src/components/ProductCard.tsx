@@ -158,7 +158,7 @@ export default function ProductCard({
         {/* Action Buttons */}
         <div className="pt-4 border-t border-stone-100 dark:border-stone-800" id={`product-actions-${product.id}`}>
           <a
-            href={`https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises,%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20the%20*${encodeURIComponent(product.name)}*%20(${encodeURIComponent(product.tagline)}).%20Please%20provide%20more%20details.`}
+            href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises%2C%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20your%20products"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full bg-brand-red hover:bg-brand-red/90 text-white font-sans font-black px-6 py-3.5 rounded-full transition-all shadow-md hover:shadow-lg hover:shadow-brand-red/20 flex items-center justify-center space-x-2 text-sm cursor-pointer transform hover:-translate-y-0.5"
@@ -272,7 +272,7 @@ export default function ProductCard({
               {/* CTAs */}
               <div className="flex flex-col gap-2">
                 <a
-                  href={`https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises,%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20the%20*${encodeURIComponent(product.name)}*%20(${encodeURIComponent(product.tagline)}).%20Please%20provide%20more%20details.`}
+                  href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises%2C%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20your%20products"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-brand-red hover:bg-brand-red/90 text-white font-sans font-black py-3.5 rounded-full shadow-lg transition-all text-center flex items-center justify-center space-x-2 text-sm cursor-pointer"
