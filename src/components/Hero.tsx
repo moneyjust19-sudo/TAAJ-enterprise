@@ -23,7 +23,6 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
           {/* Left Column: Authentic Brand Copy */}
           <div className="lg:col-span-7 flex flex-col justify-center text-left space-y-6" id="hero-copy-col">
             <div className="inline-flex items-center space-x-1.5 bg-brand-red/5 border border-brand-red/15 text-brand-red px-3.5 py-1.5 rounded-full text-xs font-mono font-bold uppercase tracking-wider self-start">
-              <Sparkles className="h-4 w-4 text-brand-red" />
               <span>OFFICIAL IBADAN DISTRIBUTOR & SALES HUB</span>
             </div>
 
@@ -67,13 +66,15 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
                 <ArrowRight className="h-4 w-4" />
               </button>
 
-              <button
-                onClick={onOpenCalculator}
+              <a
+                href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises,%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20your%20vehicles%20and%20spare%20parts."
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-white hover:bg-stone-50 text-brand-dark border border-stone-200/80 font-sans font-black px-8 py-4 rounded-full shadow-xs hover:shadow-md transition-all text-center flex items-center justify-center space-x-2 cursor-pointer uppercase text-xs tracking-wider"
-                id="hero-cta-calc"
+                id="hero-cta-whatsapp"
               >
-                <span>Finance Calculator</span>
-              </button>
+                <span>Talk to Sales</span>
+              </a>
             </motion.div>
 
             {/* Partner Brands Row */}
@@ -167,36 +168,15 @@ export default function Hero({ onExplore, onOpenCalculator }: HeroProps) {
               {/* Dark ambient overlay for text legibility */}
               <div className="absolute inset-0 bg-gradient-to-t from-brand-black/95 via-brand-black/20 to-transparent"></div>
               
-              {/* Top Badge */}
-              <div className="absolute top-4 left-4 bg-brand-yellow text-brand-black font-display font-black text-[10px] px-3.5 py-1.5 rounded-xl shadow-md uppercase tracking-wider flex items-center space-x-1">
-                <Sparkles className="h-3.5 w-3.5 animate-pulse" />
-                <span>Showroom Spotlight</span>
-              </div>
-
               {/* Bottom Details panel */}
               <div className="absolute bottom-5 left-5 right-5 text-white">
-                <span className="text-[9px] font-mono text-brand-yellow font-black uppercase tracking-widest block mb-1">
-                  NIGERIAN COMMUTER KING
-                </span>
                 <h3 className="font-display font-black text-lg sm:text-xl leading-tight">
                   TVS King Deluxe Passenger Keke
                 </h3>
                 <div className="flex items-center space-x-2 mt-2">
-                  <span className="text-xs bg-brand-red text-white px-2.5 py-1 rounded-lg font-black">₦1,950,000</span>
+                  <span className="text-xs bg-brand-red text-white px-2.5 py-1 rounded-lg font-black">Authorized Dealership</span>
                   <span className="text-[10px] text-stone-400 font-medium">Awaiting Official Photo</span>
                 </div>
-              </div>
-            </div>
-
-            {/* Overlapping small Okada highlight card (Bajaj Boxer) */}
-            <div className="absolute bottom-4 -left-3 sm:-left-6 bg-white border border-stone-200 shadow-xl p-3 rounded-2xl flex items-center space-x-3 max-w-[210px] sm:max-w-[230px] transform hover:scale-105 transition-all">
-              <div className="w-11 h-11 rounded-xl bg-stone-100 flex-shrink-0 flex items-center justify-center text-stone-400">
-                <ShoppingBag className="h-5 w-5 text-stone-300 stroke-[1.5]" />
-              </div>
-              <div className="min-w-0">
-                <h4 className="font-display font-black text-[11px] text-stone-900 leading-tight truncate">Bajaj Boxer BM150</h4>
-                <p className="font-sans text-[9px] text-stone-500 mt-0.5 font-medium">Brand New Okada</p>
-                <p className="font-mono text-[10px] text-brand-red font-bold mt-0.5">₦850,000</p>
               </div>
             </div>
 

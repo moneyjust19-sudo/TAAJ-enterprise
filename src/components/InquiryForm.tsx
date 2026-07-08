@@ -70,12 +70,12 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
     onInquirySubmitted(newInquiry);
 
     // Formulate a beautiful WhatsApp text payload
-    const textPrefix = `Hello Naija Wheels! I just submitted an inquiry on your website.%0A%0A`;
+    const textPrefix = `Hello TAAJ Commercial Enterprises! I just submitted an inquiry on your website.%0A%0A`;
     const clientDetails = `*My Details:*%0A- *Name:* ${encodeURIComponent(name)}%0A- *Phone:* ${encodeURIComponent(phone)}%0A- *City:* ${encodeURIComponent(city)}%0A%0A`;
     const productDetails = `*Order Interest:*%0A- *Model:* ${encodeURIComponent(activeProduct?.name || 'Tricycle')}%0A- *Plan chosen:* ${paymentOption === 'outright' ? 'Outright Purchase (Cash Discount)' : paymentOption === '6month' ? '6-Month installment HP' : '12-Month installment HP'}%0A`;
     const optionalMsg = message ? `%0A*Message:* ${encodeURIComponent(message)}` : '';
 
-    const waUrl = `https://wa.me/2348000000000?text=${textPrefix}${clientDetails}${productDetails}${optionalMsg}`;
+    const waUrl = `https://wa.me/2348084746856?text=${textPrefix}${clientDetails}${productDetails}${optionalMsg}`;
     setGeneratedWhatsAppLink(waUrl);
 
     setFormSubmitted(true);
@@ -113,7 +113,7 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
               <div className="mt-8 border-t border-stone-800/80 pt-6 space-y-4">
                 <div className="flex items-center space-x-3 text-xs">
                   <Smartphone className="h-4.5 w-4.5 text-brand-green" />
-                  <span className="text-stone-200 font-medium">Call center: 0800-NAIJA-WHEELS</span>
+                  <span className="text-stone-200 font-medium">Call: 0803 666 4739 / 0808 474 6856</span>
                 </div>
                 <div className="flex items-center space-x-3 text-xs">
                   <MessageSquare className="h-4.5 w-4.5 text-brand-green" />
@@ -133,7 +133,6 @@ export default function InquiryForm({ products, prefillProductId, prefillPlan, o
                     exit={{ opacity: 0 }}
                   >
                     <h4 className="font-display font-bold text-xl text-brand-dark mb-6 flex items-center space-x-2">
-                      <Sparkles className="h-5 w-5 text-brand-green animate-pulse" />
                       <span>Request a Quotation & Hire Purchase Deal</span>
                     </h4>
 

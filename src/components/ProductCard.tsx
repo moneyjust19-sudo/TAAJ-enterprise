@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Product } from '../types';
-import { Star, Check, Award, Eye, ShoppingCart, Calculator, X, Heart, Sparkles, ShoppingBag } from 'lucide-react';
+import { Star, Check, Award, Eye, ShoppingCart, Calculator, X, Heart, Sparkles, ShoppingBag, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface ProductCardProps {
@@ -79,12 +79,6 @@ export default function ProductCard({
         
         {/* Badges on Image */}
         <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
-          {product.outrightDiscount && (
-            <span className="bg-brand-red text-white text-[10px] font-display font-black px-3 py-1.5 rounded-full shadow-md flex items-center gap-1 self-start">
-              <Award className="h-3 w-3" />
-              <span>SAVE {product.outrightDiscount}% OUTRIGHT</span>
-            </span>
-          )}
         </div>
 
         {/* Wishlist Button over image */}
@@ -105,21 +99,12 @@ export default function ProductCard({
 
       {/* Content Container */}
       <div className="p-6 sm:p-8 flex-grow flex flex-col">
-        {/* Title and Pricing */}
+        {/* Title and Tagline */}
         <div className="mb-4">
           <div className="flex justify-between items-start gap-2">
             <h3 className="font-display font-black text-xl sm:text-2xl text-brand-black leading-snug tracking-tight group-hover:text-brand-red transition-colors" id={`product-title-${product.id}`}>
               {product.name}
             </h3>
-            {/* Price badge right aligned */}
-            <div className="text-right flex-shrink-0">
-              <span className="block font-display font-black text-xl sm:text-2xl text-brand-red">
-                {formatNaira(product.priceNGN)}
-              </span>
-              <span className="block font-mono text-[9px] text-stone-400 font-bold uppercase tracking-wider">
-                Outright Retail
-              </span>
-            </div>
           </div>
           <p className="font-sans text-xs font-semibold text-stone-500 mt-1.5 italic">
             &ldquo;{product.tagline}&rdquo;
@@ -150,54 +135,6 @@ export default function ProductCard({
           {product.description}
         </p>
 
-        {/* Interactive E-commerce Purchase Mode Selector */}
-        <div className="bg-stone-50 border border-stone-100 rounded-2xl p-4.5 mb-6" id={`purchase-plan-selector-${product.id}`}>
-          <span className="block font-sans font-black text-[10px] text-stone-400 uppercase tracking-widest mb-3">
-            SELECT ACQUISITION OPTION
-          </span>
-          <div className="grid grid-cols-3 gap-1.5 bg-stone-200/50 p-1 rounded-xl mb-4">
-            {(['outright', '6month', '12month'] as const).map((mode) => (
-              <button
-                key={mode}
-                onClick={() => setSelectedPlan(mode)}
-                className={`py-1.5 rounded-lg text-[10px] font-sans font-black uppercase tracking-wider transition-all cursor-pointer ${
-                  selectedPlan === mode
-                    ? 'bg-brand-black text-white shadow-sm'
-                    : 'text-stone-600 hover:text-brand-black'
-                }`}
-              >
-                {mode === 'outright' ? 'Outright' : mode === '6month' ? '6 Months' : '12 Months'}
-              </button>
-            ))}
-          </div>
-
-          {/* Dynamic price reflection based on selected mode */}
-          <div className="flex justify-between items-center bg-white border border-stone-200/50 p-3 rounded-xl shadow-sm">
-            {selectedPlan === 'outright' ? (
-              <>
-                <div>
-                  <span className="block font-sans font-black text-xs text-stone-400 uppercase tracking-wider">Outright Price</span>
-                  <span className="font-sans font-black text-base text-brand-black">{formatNaira(product.priceNGN)}</span>
-                </div>
-                <div className="bg-brand-red/5 border border-brand-red/20 text-brand-red font-sans font-black text-[9px] px-2 py-1 rounded">
-                  {product.outrightDiscount ? `-${product.outrightDiscount}% OFF` : 'PROMO PRICE'}
-                </div>
-              </>
-            ) : (
-              <>
-                <div>
-                  <span className="block font-sans font-black text-[9px] text-stone-400 uppercase tracking-wider">30% Starting Deposit</span>
-                  <span className="font-sans font-black text-sm text-brand-black">{formatNaira(financeInfo.deposit)}</span>
-                </div>
-                <div className="text-right">
-                  <span className="block font-sans font-black text-[9px] text-stone-400 uppercase tracking-wider">Weekly Installment</span>
-                  <span className="font-sans font-black text-sm text-brand-red">{formatNaira(financeInfo.weekly)}/wk</span>
-                </div>
-              </>
-            )}
-          </div>
-        </div>
-
         {/* Feature Highlights */}
         <div className="border-t border-dashed border-stone-200/80 pt-5 mb-6" id={`product-features-${product.id}`}>
           <h4 className="font-sans font-bold text-xs text-stone-400 uppercase tracking-wider mb-3">
@@ -219,41 +156,17 @@ export default function ProductCard({
         <div className="flex-grow"></div>
 
         {/* Action Buttons */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4 border-t border-stone-100" id={`product-actions-${product.id}`}>
-          
-          {/* Add to Cart button */}
-          <button
-            onClick={handleAddToCartClick}
-            disabled={showAddedAnimation}
-            className={`w-full font-sans font-black px-4 py-3 rounded-full transition-all shadow-md flex items-center justify-center space-x-2 text-sm cursor-pointer ${
-              showAddedAnimation 
-                ? 'bg-emerald-600 text-white shadow-emerald-600/10' 
-                : 'bg-brand-red hover:bg-brand-red/90 text-white shadow-brand-red/10 hover:shadow-brand-red/20'
-            }`}
-            id={`add-to-cart-btn-${product.id}`}
+        <div className="pt-4 border-t border-stone-100" id={`product-actions-${product.id}`}>
+          <a
+            href={`https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises,%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20the%20*${encodeURIComponent(product.name)}*%20(${encodeURIComponent(product.tagline)}).%20Please%20provide%20more%20details.`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full bg-brand-red hover:bg-brand-red/90 text-white font-sans font-black px-6 py-3.5 rounded-full transition-all shadow-md hover:shadow-lg hover:shadow-brand-red/20 flex items-center justify-center space-x-2 text-sm cursor-pointer transform hover:-translate-y-0.5"
+            id={`enquiry-whatsapp-btn-${product.id}`}
           >
-            {showAddedAnimation ? (
-              <>
-                <Check className="h-4 w-4 animate-scale-up" />
-                <span>Added to Cart!</span>
-              </>
-            ) : (
-              <>
-                <ShoppingCart className="h-4 w-4" />
-                <span>Add to Cart</span>
-              </>
-            )}
-          </button>
-
-          {/* Finance Terms / Customize Spreading */}
-          <button
-            onClick={() => onSelectCalculate(product.id)}
-            className="w-full bg-brand-black hover:bg-brand-black/90 text-white font-sans font-black px-4 py-3 rounded-full transition-all flex items-center justify-center space-x-2 text-sm shadow-md cursor-pointer"
-            id={`calc-btn-${product.id}`}
-          >
-            <Calculator className="h-4 w-4 text-brand-yellow" />
-            <span>Spreading Calculator</span>
-          </button>
+            <MessageSquare className="h-4.5 w-4.5 fill-current" />
+            <span>Make Enquiry on WhatsApp</span>
+          </a>
         </div>
 
         {/* View Specs Trigger */}
@@ -309,10 +222,6 @@ export default function ProductCard({
 
               {/* Product Info Table */}
               <div className="space-y-4 mb-6">
-                <div className="grid grid-cols-2 py-2 border-b border-dashed border-stone-100 text-sm">
-                  <span className="font-sans text-stone-400 font-medium">Outright Price:</span>
-                  <span className="font-sans text-brand-black font-black text-right">{formatNaira(product.priceNGN)}</span>
-                </div>
                 {product.specs.engine && (
                   <div className="grid grid-cols-2 py-2 border-b border-dashed border-stone-100 text-sm">
                     <span className="font-sans text-stone-400 font-medium">Engine/Power:</span>
@@ -362,16 +271,15 @@ export default function ProductCard({
 
               {/* CTAs */}
               <div className="flex flex-col gap-2">
-                <button
-                  onClick={() => {
-                    setShowSpecsModal(false);
-                    handleAddToCartClick();
-                  }}
+                <a
+                  href={`https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial%20Enterprises,%20I%20am%20interested%20in%20making%20an%20enquiry%20about%20the%20*${encodeURIComponent(product.name)}*%20(${encodeURIComponent(product.tagline)}).%20Please%20provide%20more%20details.`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full bg-brand-red hover:bg-brand-red/90 text-white font-sans font-black py-3.5 rounded-full shadow-lg transition-all text-center flex items-center justify-center space-x-2 text-sm cursor-pointer"
                 >
-                  <ShoppingCart className="h-4 w-4" />
-                  <span>Add to Shopping Cart ({selectedPlan === 'outright' ? 'Outright' : 'Finance'})</span>
-                </button>
+                  <MessageSquare className="h-4.5 w-4.5 fill-current animate-pulse mr-1" />
+                  <span>Contact Sales on WhatsApp</span>
+                </a>
               </div>
             </motion.div>
           </div>

@@ -36,7 +36,6 @@ export default function Header({
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'products', label: 'Store & Inventory' },
-    { id: 'calculator', label: 'Payment Calculator' },
     { id: 'testimonials', label: 'Rider Reviews' },
     { id: 'faq', label: 'FAQs' },
   ];
@@ -116,21 +115,6 @@ export default function Header({
               )}
             </button>
 
-            {/* Shopping Cart Button */}
-            <button
-              onClick={onOpenCart}
-              className="p-2.5 rounded-xl text-stone-600 hover:text-brand-red hover:bg-stone-50 transition-all relative mr-1 cursor-pointer"
-              title="View Cart"
-              id="header-cart-btn"
-            >
-              <ShoppingCart className="h-5 w-5" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-brand-red text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center animate-pulse shadow-md">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-
             <a
               href="https://wa.me/2348084746856?text=Hello%20TAAJ%20Commercial,%20I%20am%20interested%20in%20your%20vehicles%20and%20spare%20parts!"
               target="_blank"
@@ -145,21 +129,6 @@ export default function Header({
 
           {/* Mobile Actions */}
           <div className="md:hidden flex items-center space-x-2" id="mobile-menu-actions">
-            {/* Cart icon for mobile */}
-            <button
-              onClick={onOpenCart}
-              className="p-2.5 rounded-xl text-stone-600 hover:text-brand-red relative cursor-pointer"
-              title="View Cart"
-              id="mobile-cart-btn"
-            >
-              <ShoppingCart className="h-5.5 w-5.5" />
-              {cartCount > 0 && (
-                <span className="absolute top-1 right-1 bg-brand-red text-white text-[9px] font-black w-4.5 h-4.5 rounded-full flex items-center justify-center shadow-md">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-
             {/* Wishlist icon for mobile */}
             <button
               onClick={onOpenWishlist}

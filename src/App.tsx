@@ -556,13 +556,6 @@ export default function App() {
                 </div>
               </section>
 
-              {/* Installment Finance term calculator */}
-              <InstallmentCalculator
-                products={NIGERIAN_PRODUCTS}
-                selectedProductId={prefillProductId}
-                onApplyPlan={handleApplyPlan}
-              />
-
               {/* Customer Stories / Testimonials Section */}
               <section className="py-20 bg-white" id="testimonials">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -608,9 +601,6 @@ export default function App() {
                             </h4>
                             <span className="block font-mono text-[9px] text-stone-400 font-bold uppercase mt-0.5">
                               {test.role} &bull; {test.location}
-                            </span>
-                            <span className="inline-block bg-brand-red/5 text-brand-red font-sans text-[9px] font-black px-2 py-0.5 rounded mt-1 border border-brand-red/10 uppercase">
-                              Owns: {test.purchasedProduct}
                             </span>
                           </div>
                         </div>
@@ -662,11 +652,6 @@ export default function App() {
                 <li>
                   <button onClick={() => handleNavigate('products')} className="hover:text-brand-red transition-colors cursor-pointer text-left">
                     Browse Vehicles & Spare Parts
-                  </button>
-                </li>
-                <li>
-                  <button onClick={() => handleNavigate('calculator')} className="hover:text-brand-red transition-colors cursor-pointer text-left">
-                    Finance & Payment Calculator
                   </button>
                 </li>
                 <li>
